@@ -476,6 +476,21 @@ app.post('/api/user/watch-history/:movieId', auth, async (req, res) => {
 
 // ============ HEALTH CHECK ============
 
+app.get('/api', (req, res) => {
+  res.json({
+    message: 'Clone Series Backend API',
+    version: '1.0.0',
+    status: 'OK',
+    endpoints: {
+      health: '/api/health',
+      movies: '/api/movies',
+      auth: '/api/auth/login',
+      watchlist: '/api/watchlist',
+      reviews: '/api/movies/:id/reviews'
+    }
+  });
+});
+
 app.get('/api/health', (req, res) => {
   res.json({ status: 'Server is running', timestamp: new Date() });
 });
